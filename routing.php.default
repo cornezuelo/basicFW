@@ -1,0 +1,6 @@
+<?php
+//SYNTAX: 'route_name' => ['controller','action']
+$routing = [
+	'default' => ['MainController','mainAction']
+];
+?>

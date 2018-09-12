@@ -1,0 +1,10 @@
+<?php
+$config = array(
+	"errors" => true,
+	"DBEnable" => true,
+	"hostDB" => "localhost",
+	"userDB" => "root",
+	"pwdDB"	 => "",
+	"dbDB"	 => "basicFW"
+);
+?>
