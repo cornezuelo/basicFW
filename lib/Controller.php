@@ -18,7 +18,7 @@ class Controller {
 			echo '<pre>';print_r($v);echo '</pre>';
 		}));		
 	}
-	public function action($action='main',$args=[]) {				
+	public function _action($action='main',$args=[]) {				
 		if (method_exists($this, $action)) {
 			if (!empty($args)) {				
 				$this->$action($args);
@@ -29,4 +29,10 @@ class Controller {
 			die('Method '.$action.' doesn\'t exist');
 		}
 	}
+	public function _getAppParam($k) {		
+		if (isset($GLOBALS['_configApp'][$k])) {
+			return $GLOBALS['_configApp'][$k]; 
+		}
+		return false;
+	}	
 }

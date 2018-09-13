@@ -25,7 +25,7 @@ spl_autoload_register(function ($class) {
 });
 
 //ERRORS
-if (isset($config['errors']) && $config['errors'] == true) {
+if (isset($_configApp['errors']) && $_configApp['errors'] == true) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 }

@@ -20,7 +20,7 @@ try {
 		} else {
 			require_once $controller;			
 			$obj = new $class();						
-			$obj->action($method);
+			$obj->_action($method);
 		}
 	} else {
 		throw new Exception('No route for "'.$route.'"');
