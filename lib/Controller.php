@@ -39,7 +39,7 @@ class Controller {
 		return false;
 	}		
 	
-	public function _getParam($k) {		
+	public function _getParam($k) {				
 		if (isset($GLOBALS['_paramsApp'][$k])) {
 			return $GLOBALS['_paramsApp'][$k]; 
 		}

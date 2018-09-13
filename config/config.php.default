@@ -5,7 +5,7 @@ $_configApp = array(
 );
 //PARAMS
 $_paramsApp = array(
-	'test' => 'test string',
+	'paramtest' => 'test string',
 );
 //SERVICES
 $_servicesApp = array(
