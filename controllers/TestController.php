@@ -12,12 +12,12 @@
  * @author IBERLEY\oaviles
  */
 class TestController extends Controller {
-	public function testAction() {				
-		$obj = new TestManager();
+	public function testAction() {						
+		$obj = $this->_getManager('TestManager');
 		$test_string = $obj->test();
 		echo $this->twig->render('test.html.twig', [
 			'test_string' => $test_string,
-			'errors_app_param' => $this->_getAppParam('errors')
+			'errors_app_param' => $this->_getConfig('errors')
 			
 		]);
 	}	

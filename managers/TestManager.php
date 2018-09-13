@@ -12,7 +12,13 @@
  * @author IBERLEY\oaviles
  */
 class TestManager {
+	private $test2Manager;
+	function __construct(Test2Manager $test2Manager) {
+		$this->test2Manager = $test2Manager;
+	}
+
 	public function test() {
-		return '<p>This is a test string sent from a manager.</p>';
+		$param = $this->test2Manager->getParam();
+		return '<p>This is a test string sent from a manager with param '.$param.'.</p>';
 	}
 }

@@ -15,7 +15,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 //AUTOLOADER
 spl_autoload_register(function ($class) {       
-    $file = __DIR__ . '/../managers/' . str_replace('\\', '/', $class) . '.php';
+    $file = __DIR__ . '/../managers/' . str_replace('\\', '/', $class) . '.php';	
     // if the file exists, require it
     if (file_exists($file)) {
         require $file;
@@ -28,5 +28,13 @@ spl_autoload_register(function ($class) {
 if (isset($_configApp['errors']) && $_configApp['errors'] == true) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
+}
+
+//ROUTING
+$aux = explode('index.php', $_SERVER['REQUEST_URI']);
+$route = $aux[count($aux)-1];
+unset($aux);
+if (empty($route)) {
+	$route = '__default__';
 }
 ?>

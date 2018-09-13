@@ -1,5 +1,15 @@
 <?php
+//CONFIG
 $_configApp = array(
-	"errors" => true	
+	"errors" => true,	
+);
+//PARAMS
+$_paramsApp = array(
+	'test' => 'test string',
+);
+//SERVICES
+$_servicesApp = array(
+	"TestManager" => ['@Test2Manager@'],
+	"Test2Manager" => ['%paramtest%'],
 );
 ?>

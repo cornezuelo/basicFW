@@ -1,15 +1,7 @@
 <?php
 //ENVIRONMENT
 require_once 'lib/env.php';
-
-//ROUTING
-$aux = explode('index.php', $_SERVER['REQUEST_URI']);
-$route = $aux[count($aux)-1];
-unset($aux);
-if (empty($route)) {
-	$route = '__default__';
-}
-
+//PROCESS
 try {
 	if (isset($routing[$route])) {
 		$class = $routing[$route][0];
