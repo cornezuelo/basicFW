@@ -1,0 +1,6 @@
+<?php
+//SYNTAX: 'route' => ['controller','action']
+$routing = [
+	'__default__' => ['TestController','testAction']
+];
+?>

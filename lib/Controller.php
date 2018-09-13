@@ -9,14 +9,13 @@
  *
  * @author IBERLEY\oaviles
  */
-use Commmon;
 class Controller {
 	public $twig;	
 	function __construct() {
 		$loader = new Twig_Loader_Filesystem(__DIR__.'/../views');
 		$this->twig = new Twig_Environment($loader, array('cache' => 'cache','auto_reload' => true));
 		$this->twig->addFunction(new Twig_Function('dump', function($v) {
-			\Commmon::pre($v);
+			echo '<pre>';print_r($v);echo '</pre>';
 		}));		
 	}
 	public function action($action='main',$args=[]) {				

@@ -1,14 +1,19 @@
 <?php
 //ENVIRONMENT
-require_once 'env.php';
+require_once 'lib/env.php';
+
 //ROUTING
-if (!isset($_REQUEST['route'])) {
-	$_REQUEST['route'] = 'default'; //Default route
+$aux = explode('index.php', $_SERVER['REQUEST_URI']);
+$route = $aux[count($aux)-1];
+unset($aux);
+if (empty($route)) {
+	$route = '__default__';
 }
+
 try {
-	if (isset($routing[$_REQUEST['route']])) {
-		$class = $routing[$_REQUEST['route']][0];
-		$method = $routing[$_REQUEST['route']][1];
+	if (isset($routing[$route])) {
+		$class = $routing[$route][0];
+		$method = $routing[$route][1];
 		$controller = __DIR__.'/controllers/'.$class.'.php';		
 		if (!file_exists($controller)) {
 			throw new Exception($controller. ' controller doesn\'t exist.');
@@ -18,7 +23,7 @@ try {
 			$obj->action($method);
 		}
 	} else {
-		throw new Exception('No route for '.$_REQUEST['route']);
+		throw new Exception('No route for "'.$route.'"');
 	}	
 } catch (Exception $e) {
 	die('<b>Exception:</b> '.$e->getMessage());

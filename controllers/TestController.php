@@ -7,14 +7,14 @@
  */
 
 /**
- * Description of MainController
+ * Description of TestController
  *
  * @author IBERLEY\oaviles
  */
-class MainController extends Controller {
-	public function mainAction() {				
+class TestController extends Controller {
+	public function testAction() {				
 		$obj = new TestManager();
 		$test_string = $obj->test();
-		echo $this->twig->render('index.html.twig', ['test_string' => $test_string]);
+		echo $this->twig->render('test.html.twig', ['test_string' => $test_string]);
 	}	
 }
