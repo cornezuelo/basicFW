@@ -23,8 +23,16 @@ There are two kinds of special params that can be injected:
 * Other managers : If you want to inject another manager into a manager, you could do it with the following syntax: `"@name_of_the_manager_to_inject@"`. So, if you want to inject `Test2Manager` in `TestManager`, you could declare the service as: `"TestManager" => ["@Test2Manager@"]`. 
 * Config parameters : If you want to inject some of your app parameters, you could do it with the following syntax: `"%name_of_the_parameter%"`. So, if you want to inject the parameter `paramtest` in the `Test2Manager`, you could declare the service as: `"Test2Manager" => ["%paramtest%"]`.
 
+## Routing
+You define your routes in `config/routing.php` with the following syntax: `'route' => ['controller','action']`
+So, if you want to be routed to the `mainAction` action of the `MainController` controller when someone enters the url `index.php/test/route`, you would add the following route: `'/test/route' => ['MainController','mainAction']`.
+
+The route for `index.php` without any route is defined as `__default__`. So, if you want to route the user to the `testAction` of the `TestController` when he access `http://www.server.com/index.php`, you would define a route like the following: `'__default__' => ['TestController','testAction']`
+
 ## Controllers
 Your controllers should go in the `controllers/` folder. As seen is `TestController.php`. they should be classes that extend from the main controller, `Controller`.
+
+In a controller, you define actions, than you'll then use in your `routing.php` config file.
 
 Here, you can invoke your managers via `$this->_getManager('manager_name');`, for example, for invoking `TestManager` as seen in the `TestController`, you could do something like `$this->_getManager('TestManager');`.
 
@@ -45,3 +53,8 @@ The framework will take care of constructing the `Test2Manager` manager (injecti
 
 ## Views
 Your views go in the `views/` folder, using the Twig templating engine. You have got a `{{ dump(variable) }}` method enabled for debuging variables if you need it. 
+
+# TO-DO
+* Refactoring of the routing system, in order to use an alias for the route (which can be used with a `path()` function in twig) and accept multiple routes. In case of repeating routes, we'll use either the first or the last one that gets matched.
+* `path()` method in twig for rendering routes.
+* `param()` method in twig for printing parameters.
