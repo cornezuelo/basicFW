@@ -59,3 +59,6 @@ Your views go in the `views/` folder, using the Twig templating engine. You have
 * Refactoring of the routing system, in order to use an alias for the route (which can be used with a `path()` function in twig) and accept multiple routes. In case of repeating routes, we'll use either the first or the last one that gets matched.
 * `path()` method in twig for rendering routes.
 * `param()` method in twig for printing parameters.
+* Cache system, with the posibility of activate or deactivate it in the config.php. Cache activated will imply activating both the twig cache, and the configuration cache (Study how to use a cache for routes and services, maybe start only with creating an easy parseable routing file, and do some tests about the timing with or without the cache before doing something serious)
+* Separate the parameters, the config and services in individual files.
+* Use YAML, INI, or something like that for the configs instead of php files.
