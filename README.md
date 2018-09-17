@@ -55,6 +55,7 @@ The framework will take care of constructing the `Test2Manager` manager (injecti
 Your views go in the `views/` folder, using the Twig templating engine. You have got a `{{ dump(variable) }}` method enabled for debuging variables if you need it. 
 
 # TO-DO
+* Create a system for managing the twig functions. Dump, path and param as internal functions, but with the posibility to extend it with other ones.
 * Refactoring of the routing system, in order to use an alias for the route (which can be used with a `path()` function in twig) and accept multiple routes. In case of repeating routes, we'll use either the first or the last one that gets matched.
 * `path()` method in twig for rendering routes.
 * `param()` method in twig for printing parameters.
