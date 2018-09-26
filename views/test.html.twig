@@ -3,3 +3,6 @@ Hello world!
 {{ dump(test_string|default('')) }}
 
 Errors {% if errors_app_param %}<span style="color:green">activated</span>{% else %}<span style="color:red">deactivated</span>{% endif %}.
+
+Path twig function: {{path('__default__')}}<br>
+Param twig function: {{param('paramtest')}}

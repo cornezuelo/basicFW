@@ -1,4 +1,6 @@
 vendor/*
 cache/*
 config/config.php
+config/parameters.php
+config/services.php
 config/routing.php

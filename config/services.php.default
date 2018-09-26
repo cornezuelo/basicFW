@@ -1,0 +1,6 @@
+<?php
+//SERVICES
+$_servicesApp = array(
+	"TestManager" => ['@Test2Manager@'],
+	"Test2Manager" => ['%paramtest%'],
+);

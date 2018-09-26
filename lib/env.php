@@ -1,21 +1,39 @@
 <?php
 //ENVIRONMENT
-if (!file_exists(__DIR__.'/../config/config.php')) {
-	die('/../config/config.php file doesn\'t exist. Please, copy config.php.default to config.php and edit the file.');
+//******************************************************************************
+//Config files
+$_appConfigFiles = ['config.php','parameters.php','services.php','routing.php'];
+foreach ($_appConfigFiles as $file) {
+	if (!file_exists(__DIR__.'/../config/'.$file)) {
+		die('/../config/'.$file.' file doesn\'t exist. Please, copy '.$file.'.default to '.$file.' and edit the file.');
+	} else {
+		include_once(__DIR__.'/../config/'.$file);
+	}
 }
-if (!file_exists(__DIR__.'/../config/routing.php')) {
-	die('routing.php file doesn\'t exist. Please, copy routing.php.default to routing.php and edit the file.');
-}
+unset($_appConfigFiles);
+unset($file);
+
+//Require config
+require_once __DIR__.'/../config/config.php';
+
+//Errors
+if (isset($_configApp['errors']) && $_configApp['errors'] == true) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
-require_once __DIR__.'/../config/config.php';
+}
+
+//Requires
 require_once __DIR__.'/../config/routing.php';
 require_once __DIR__.'/Controller.php';
 require_once __DIR__.'/../vendor/autoload.php';
 
-//AUTOLOADER
-spl_autoload_register(function ($class) {       
-    $file = __DIR__ . '/../managers/' . str_replace('\\', '/', $class) . '.php';	
+//Autoloader
+spl_autoload_register(function ($class) {	
+	if (strpos($class,'twig_') === 0) {
+		$file = __DIR__ . '/../twig/' . str_replace('\\', '/', str_replace('twig_','',$class)) . '.php';	
+	} else {
+		$file = __DIR__ . '/../managers/' . str_replace('\\', '/', $class) . '.php';	
+	}
     // if the file exists, require it
     if (file_exists($file)) {
         require $file;
@@ -24,17 +42,10 @@ spl_autoload_register(function ($class) {
 	}
 });
 
-//ERRORS
-if (isset($_configApp['errors']) && $_configApp['errors'] == true) {
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
-}
-
-//ROUTING
+//Routing
 $aux = explode('index.php', $_SERVER['REQUEST_URI']);
 $route = $aux[count($aux)-1];
-unset($aux);
-if (empty($route)) {
+if (empty($route) || $aux[0] == $route) {
 	$route = '__default__';
 }
 ?>

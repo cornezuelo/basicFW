@@ -3,13 +3,4 @@
 $_configApp = array(
 	"errors" => true,	
 );
-//PARAMS
-$_paramsApp = array(
-	'paramtest' => 'test string',
-);
-//SERVICES
-$_servicesApp = array(
-	"TestManager" => ['@Test2Manager@'],
-	"Test2Manager" => ['%paramtest%'],
-);
 ?>

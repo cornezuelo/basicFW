@@ -15,9 +15,7 @@ class Controller {
 	function __construct() {
 		$loader = new Twig_Loader_Filesystem(__DIR__.'/../views');
 		$this->twig = new Twig_Environment($loader, array('cache' => 'cache','auto_reload' => true));
-		$this->twig->addFunction(new Twig_Function('dump', function($v) {
-			echo '<pre>';print_r($v);echo '</pre>';
-		}));		
+		$this->loadTwigFunctions();		
 	}
 	
 	public function _action($action='main',$args=[]) {				
@@ -46,7 +44,7 @@ class Controller {
 		return false;
 	}	
 	
-	public function _getManager($manager) {		
+	public function _getManager($manager) {			
 		$services = $GLOBALS['_servicesApp'];
 		$params = [];		
 		if (isset($services[$manager])) {			
@@ -70,5 +68,16 @@ class Controller {
 			$obj = new $manager();
 		}
 		return $obj;		
+	}
+	
+	public function loadTwigFunctions() {
+		$files = scandir(__DIR__.'/../twig');
+		foreach ($files as $file) {
+			if (!in_array($file,['.','..'])) {
+				$fName = str_replace('.php','',$file);
+				$className = 'twig_'.$fName;								
+				$this->twig->addFunction(new Twig_Function($fName, $className::_exec()));			
+			}
+		}				
 	}
 }

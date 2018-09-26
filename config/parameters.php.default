@@ -1,0 +1,5 @@
+<?php
+//PARAMS
+$_paramsApp = array(
+	'paramtest' => 'test string',
+);

@@ -1,6 +1,6 @@
 <?php
-//SYNTAX: 'route' => ['controller','action']
-$routing = [
-	'__default__' => ['TestController','testAction']
+//SYNTAX: 'route_alias' => ['controller','action',['route1','route2','route3'...]]
+$_routingApp = [
+	'__default__' => ['TestController','testAction',['__default__']]
 ];
 ?>
