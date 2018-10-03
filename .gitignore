@@ -1,5 +1,8 @@
 vendor/*
 cache/*
+managers/*
+controllers/*
+views/*
 config/config.php
 config/parameters.php
 config/services.php
