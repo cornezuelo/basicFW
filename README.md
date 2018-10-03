@@ -40,6 +40,23 @@ You could also use the methods `$this->_getConfig('config_key');` for accessing 
 
 You have got access to twig through `$this->twig` in the controllers as well. Usually you would want to do a `echo $this->twig->render()` at the end of your actions in order to render your view.
 
+And example of how `TestController` could look like:
+
+***controllers/TestController.php***
+```
+class TestController extends Controller {
+	public function testAction() {						
+		$obj = $this->_getManager('TestManager');
+		$test_string = $obj->test();
+		echo $this->twig->render('test.html.twig', [
+			'test_string' => $test_string,
+			'errors_app_param' => $this->_getConfig('errors')
+			
+		]);
+	}	
+}
+```
+
 ## Managers
 Your managers should go in the `managers/` folder. They don't need to extend from anything, and you can inject whatever you need on them. Remember what we saw on the `Global Variables` section, you could magicly construct those managers using the services system. For example, if we had the service `"TestManager" => ["@Test2Manager@"]`, the `__construct()` method of our `TestManager` class would look like:
 
@@ -48,6 +65,37 @@ Your managers should go in the `managers/` folder. They don't need to extend fro
 }`
 
 The framework will take care of constructing the `Test2Manager` manager (injecting parameters and managers if needed and declared on the services configuration) and pass it to the constructor.
+
+An example of how `TestManager` and `TestManager2` would look like:
+
+**managers/TestManager.php**
+```
+class TestManager {
+	private $test2Manager;
+	function __construct(Test2Manager $test2Manager) {
+		$this->test2Manager = $test2Manager;
+	}
+	public function test() {
+		$param = $this->test2Manager->getParam();
+		return '<p>This is a test string sent from a manager with param '.$param.'.</p>';
+	}
+}
+```
+
+**managers/TestManager2.php**
+```
+class Test2Manager {
+	private $param;	
+	
+	function __construct($param) {
+		$this->param = $param;
+	}
+	
+	function getParam() {
+		return $this->param;
+	}
+}
+```
 
 ## Views
 Your views go in the `views/` folder, using the Twig templating engine. 
@@ -61,5 +109,17 @@ You can create your own twig functions. For this, create a class in the `twig/` 
 * The class name should be `twig_[function_name]`. So, for the `{{dump()}}` function, the class should be named `twig_dump()`.
 * The class should have a `_exec()` public and static method, that should return an anonymous function, containing the code you want to be applied when your function is invoked.
 
+And example of how a test twig view could contain:
+***views/test.html.twig***
+```
+Hello world!
+
+{{ dump(test_string|default('')) }}
+
+Errors {% if errors_app_param %}<span style="color:green">activated</span>{% else %}<span style="color:red">deactivated</span>{% endif %}.
+
+Path twig function: {{path('__default__')}}<br>
+Param twig function: {{param('paramtest')}}
+```
 # TO-DO
 * Cache system, with the posibility of activate or deactivate it in the config.php. Cache activated will imply activating both the twig cache, and the configuration cache (Study how to use a cache for routes and services, maybe start only with creating an easy parseable routing file, and do some tests about the timing with or without the cache before doing something serious)
