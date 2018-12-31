@@ -5,8 +5,6 @@ A basic framework in PHP using a MVC-like philosophy, with Twig as the renderer.
 Copy `config/config.php.default` to `config/config.php` and `config/routing.php.default` to `config/routing.php`.
 Do a `composer install` for installing twig.
 
-You could delete the test controllers and managers defined as examples if you want.
-
 # Documentation
 ## Config Variables
 Defined in `$_configApp`, in the file `config/config.php`, those are internal variables that define how the framework behaves. You can configure the following parameters:
