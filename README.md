@@ -66,7 +66,7 @@ Your managers should go in the `managers/` folder. They don't need to extend fro
 
 The framework will take care of constructing the `Test2Manager` manager (injecting parameters and managers if needed and declared on the services configuration) and pass it to the constructor.
 
-An example of how `TestManager` and `TestManager2` would look like:
+An example of how `TestManager` and `Test2Manager` would look like:
 
 **managers/TestManager.php**
 ```
@@ -82,7 +82,7 @@ class TestManager {
 }
 ```
 
-**managers/TestManager2.php**
+**managers/Test2Manager.php**
 ```
 class Test2Manager {
 	private $param;	
@@ -122,4 +122,5 @@ Path twig function: {{path('__default__')}}<br>
 Param twig function: {{param('paramtest')}}
 ```
 # TO-DO
+* Passing parameters in the route and detect them using regexes if we weren't able to find a literal route, so you could use something like /page/{number} for rendering your routes more cleanly instead of using get parameters.
 * Cache system, with the posibility of activate or deactivate it in the config.php. Cache activated will imply activating both the twig cache, and the configuration cache (Study how to use a cache for routes and services, maybe start only with creating an easy parseable routing file, and do some tests about the timing with or without the cache before doing something serious)
