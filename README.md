@@ -28,7 +28,7 @@ So, if you want to be routed to the `mainAction` action of the `MainController` 
 The route for `index.php` without any route is defined with the alias name and route `__default__`. So, if you want to route the user to the `testAction` of the `TestController` when he access `http://www.server.com/index.php`, you would define a route like the following: `'__default__' => ['TestController','testAction',['__default__']]`
 
 ## Controllers
-Your controllers should go in the `controllers/` folder. As seen is `TestController.php`. they should be classes that extend from the main controller, `Controller`.
+Your controllers should go in the `controllers/` folder. They should be classes that extend from the main controller, `Controller`.
 
 In a controller, you define actions, than you'll then use in your `routing.php` config file.
 
