@@ -120,5 +120,6 @@ Path twig function: {{path('__default__')}}<br>
 Param twig function: {{param('paramtest')}}
 ```
 # TO-DO
-* Passing parameters in the route and detect them using regexes if we weren't able to find a literal route, so you could use something like /page/{number} for rendering your routes more cleanly instead of using get parameters.
+* Passing parameters in the route and detect them using regexes if we weren't able to find a literal route, so you could use something like /page/{number} for rendering your routes more cleanly instead of using get parameters. Twig path function should be able to receive the params to inject.
+* $this->_getPath('route_name', $params) in controller, for beeing able to render paths.
 * Cache system, with the posibility of activate or deactivate it in the config.php. Cache activated will imply activating both the twig cache, and the configuration cache (Study how to use a cache for routes and services, maybe start only with creating an easy parseable routing file, and do some tests about the timing with or without the cache before doing something serious)

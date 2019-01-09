@@ -21,7 +21,8 @@ class Controller {
 	public function _action($action='main',$args=[]) {				
 		if (method_exists($this, $action)) {
 			if (!empty($args)) {				
-				$this->$action($args);
+				call_user_func_array(array($this,$action), $args);
+				//$this->$action($args);
 			} else {
 				$this->$action();
 			}			
