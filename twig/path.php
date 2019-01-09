@@ -13,14 +13,8 @@
  */
 class twig_path {
 	public static function _exec() {		
-		return function($route) {
-			$_routingApp = $GLOBALS['_routingApp'];
-			foreach ($_routingApp as $routeAux) {		
-				if (in_array($route,$routeAux[2])) {
-					return $routeAux[2][0];					
-				}
-			}			
-			return false;
+		return function($route,$args=[]) {
+			return _getPathEnv($route, $args);
 		};
 	}
 }

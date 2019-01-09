@@ -71,6 +71,10 @@ class Controller {
 		return $obj;		
 	}
 	
+	public function _getPath($route, $args=[]) {
+		return _getPathEnv($route, $args);		
+	}
+	
 	public function loadTwigFunctions() {
 		$files = scandir(__DIR__.'/../twig');
 		foreach ($files as $file) {

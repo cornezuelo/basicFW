@@ -4,38 +4,9 @@ require_once 'lib/env.php';
 //PROCESS
 try {	
 	$paramsRoute = [];
-	if ($route == '__default__' && isset($_routingApp['__default__'])) {
-		$routeFound = $_routingApp['__default__'];
-	}
-	else {
-		foreach ($_routingApp as $routeAux) {		
-			foreach ($routeAux[2] as $currentRoute) {
-				//Simple method
-				if ($currentRoute == $route) {
-					$routeFound = $routeAux;
-					break;					
-				} 
-				//Regex method
-				elseif (strpos($currentRoute, '{') !== false && strpos($currentRoute, '}') !== false) {										
-					$re = preg_replace('/\{(.+)\}/U', '(.+)', $currentRoute); //Convert						
-					$re = '/'.str_replace('/', '\/', $re).'/'; //Flags, delimiter and backslash escaping					
-					preg_match_all($re, $route, $matches, PREG_SET_ORDER, 0);					
-					if (isset($matches[0]) && isset($matches[0][1]) && !empty($matches[0][1])) {						
-						foreach ($matches[0] as $k_match => $v_match) {
-							if ($k_match != 0) {
-								$paramsRoute[$k_match-1] = $v_match;
-							}							
-						}
-						$routeFound = $routeAux;
-						break;
-						
-					}					
-				}
-			}			
-		}					
-	}
+	$routeFound = _findRoute($route);
 	
-	if (isset($routeFound)) {
+	if ($routeFound != false) {
 		$class = $routeFound[0];
 		$method = $routeFound[1];
 		$controller = __DIR__.'/controllers/'.$class.'.php';		
