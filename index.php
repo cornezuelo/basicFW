@@ -4,7 +4,9 @@ require_once 'lib/env.php';
 //PROCESS
 try {	
 	$paramsRoute = [];
-	$routeFound = _findRoute($route);
+	$aux = _findRoute($route);
+	$routeFound = $aux['route'];
+	$paramsRoute = $aux['params'];
 	
 	if ($routeFound != false) {
 		$class = $routeFound[0];
