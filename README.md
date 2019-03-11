@@ -125,3 +125,4 @@ Param twig function: {{param('paramtest')}}
 ```
 # TO-DO
 * Cache system, with the posibility of activate or deactivate it in the config.php. Cache activated will imply activating both the twig cache, and the configuration cache (Study how to use a cache for routes and services, maybe start only with creating an easy parseable routing file, and do some tests about the timing with or without the cache before doing something serious)
+* Use namespaces and PSR4 standard loading. Controller and Manager in their respective folders, instead that on lib. Maybe put out env.php in the root instead of the lib folder, and eliminate that folder. 
