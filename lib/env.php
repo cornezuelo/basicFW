@@ -54,6 +54,7 @@ function _findRouteByAlias($route) {
 
 function _findRoute($route) {
 	global $_routingApp;
+	$paramsRoute = [];
 	$routeFound = false;
 	//Default
 	if ($route == '__default__' && isset($_routingApp['__default__'])) {
@@ -87,7 +88,7 @@ function _findRoute($route) {
 			}			
 		}					
 	}
-	return $routeFound;	
+	return ['route' => $routeFound, 'params' => $paramsRoute];	
 }
 
 function _getPathEnv($route,$args=[]) {
