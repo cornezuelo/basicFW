@@ -9,8 +9,6 @@
  *
  * @author IBERLEY\oaviles
  */
-namespace controllers;
-
 class Controller {
 	public $twig;	
 	
