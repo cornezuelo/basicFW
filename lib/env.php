@@ -120,6 +120,9 @@ function _getPathEnv($route,$args=[]) {
 //Routing
 $aux = explode('index.php', $_SERVER['REQUEST_URI']);
 $route = $aux[count($aux)-1];
+if (strpos($route, '?') !== false) {
+	$route = explode('?', $route)[0];
+}
 if (empty($route) || $aux[0] == $route) {
 	$route = '__default__';
 }
